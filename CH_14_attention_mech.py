@@ -23,44 +23,7 @@ inputs = torch.tensor(
 words = ['Your', 'journey', 'starts', 'with', 'one', 'step']
 
 # --------------------------------------------------------------
-# 2. 3D görselleştirme (token vektörlerinin dağılımı)
-# --------------------------------------------------------------
-x_coords, y_coords, z_coords = inputs[:, 0].numpy(), inputs[:, 1].numpy(), inputs[:, 2].numpy()
-
-fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
-for x, y, z, word in zip(x_coords, y_coords, z_coords, words):
-    ax.scatter(x, y, z)
-    ax.text(x, y, z, word, fontsize=10)
-
-ax.set_xlabel('X')
-ax.set_ylabel('Y')
-ax.set_zlabel('Z')
-plt.title('3D Görselleştirme: Token Vektörleri')
-plt.show()
-
-# --------------------------------------------------------------
-# 3. Aynı vektörleri renklendirilmiş oklarla çizdirme
-# --------------------------------------------------------------
-fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
-colors = ['r', 'g', 'b', 'c', 'm', 'y']
-
-for (x, y, z, word, color) in zip(x_coords, y_coords, z_coords, words, colors):
-    ax.quiver(0, 0, 0, x, y, z, color=color, arrow_length_ratio=0.05)
-    ax.text(x, y, z, word, fontsize=10, color=color)
-
-ax.set_xlabel('X')
-ax.set_ylabel('Y')
-ax.set_zlabel('Z')
-ax.set_xlim([0, 1])
-ax.set_ylim([0, 1])
-ax.set_zlim([0, 1])
-plt.title('3D Token Vektörleri (Renkli Vektörlerle)')
-plt.show()
-
-# --------------------------------------------------------------
-# 4. "journey" kelimesi query seçilir (x²)
+# 2. "journey" kelimesi query seçilir (x²)
 # --------------------------------------------------------------
 query = inputs[1]
 attn_scores_2 = torch.empty(inputs.shape[0])
@@ -73,14 +36,14 @@ print(attn_scores_2)
 # "journey" ve "starts" vektörleri birbirine yakın → yüksek skor (1.4754)
 
 # --------------------------------------------------------------
-# 5. Normalizasyon: skorları ağırlıklara dönüştürme
+# 3. Normalizasyon: skorları ağırlıklara dönüştürme
 # --------------------------------------------------------------
 attn_weights_2_tmp = attn_scores_2 / attn_scores_2.sum()
 print("Toplam:", attn_weights_2_tmp.sum())
 # Bu yöntem basit ama kararlı değildir. Softmax tercih edilir.
 
 # --------------------------------------------------------------
-# 6. Softmax ile normalizasyon
+# 4. Softmax ile normalizasyon
 # --------------------------------------------------------------
 def softmax_naive(x):
     """Naive softmax fonksiyonu: e^x / Σ(e^x)"""
@@ -97,7 +60,7 @@ print("Toplam:", attn_weights_2.sum())
 # "journey" ve "starts" token'ları en yüksek dikkat ağırlığına sahip (~%23)
 
 # --------------------------------------------------------------
-# 7. Context vektörünün oluşturulması (2. token için)
+# 5. Context vektörünün oluşturulması (2. token için)
 # --------------------------------------------------------------
 context_vec_2 = torch.zeros(query.shape)
 for i, x_i in enumerate(inputs):
@@ -105,7 +68,7 @@ for i, x_i in enumerate(inputs):
 print("Context vektörü (x²):", context_vec_2)
 
 # --------------------------------------------------------------
-# 8. Tüm token’lar için attention matrisi (6x6)
+# 6. Tüm token’lar için attention matrisi (6x6)  
 # --------------------------------------------------------------
 attn_scores = inputs @ inputs.T  # dot product (hızlı yöntem)
 print("Attention skor matrisi:\n", attn_scores)
@@ -115,7 +78,8 @@ attn_weights = torch.softmax(attn_scores, dim=-1)
 print("Attention ağırlıkları:\n", attn_weights)
 
 # --------------------------------------------------------------
-# 9. Her token için context vektörlerinin hesaplanması
+# 7. Her token için context vektörlerinin hesaplanması
 # --------------------------------------------------------------
 all_context_vecs = attn_weights @ inputs
 print("Context vektörleri (6x3):\n", all_context_vecs)
+
