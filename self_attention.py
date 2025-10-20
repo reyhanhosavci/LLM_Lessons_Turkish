@@ -102,3 +102,81 @@ class SelfAttention_v2(nn.Module):
         context_vec = attn_weights @ values
 
         return context_vec
+
+class CausalAttention(nn.Module):
+    """
+    Causal (masked) self-attention katmanı.
+    Bu versiyonda, her token yalnızca KENDİSİNDEN ÖNCEKİ token’lara bakabilir.
+    (Yani gelecek token’lar maskelenir.)
+    
+    Kullanıldığı yer: GPT, decoder-only transformer modelleri.
+    """
+
+    def __init__(self, d_in, d_out, context_length, dropout, qkv_bias=False):
+        """
+        Parametreler:
+        --------------
+        d_in : int
+            Giriş embedding boyutu
+        d_out : int
+            Çıkış embedding boyutu
+        context_length : int
+            Maksimum sequence (context) uzunluğu — mask boyutunu belirler
+        dropout : float
+            Attention ağırlıklarına uygulanacak dropout oranı
+        qkv_bias : bool
+            Linear katmanlarda bias eklensin mi (varsayılan: False)
+        """
+        super().__init__()
+        self.d_out = d_out
+
+        # Query, Key, Value dönüşümleri için Linear katmanlar
+        self.W_query = nn.Linear(d_in, d_out, bias=qkv_bias)
+        self.W_key   = nn.Linear(d_in, d_out, bias=qkv_bias)
+        self.W_value = nn.Linear(d_in, d_out, bias=qkv_bias)
+
+        # Dropout: overfitting’i azaltmak için uygulanır
+        self.dropout = nn.Dropout(dropout)
+
+        # Üst üçgen mask (upper triangular mask)
+        # Üst üçgen kısım 1 → gelecek token’ları gizler (causal attention)
+        self.register_buffer(
+            'mask', torch.triu(torch.ones(context_length, context_length), diagonal=1)
+        )
+
+    def forward(self, x):
+        """
+        x : torch.Tensor
+            Girdi tensörü (boyut: [batch_size, num_tokens, d_in])
+        Dönüş :
+            context_vec : torch.Tensor
+                Çıktı tensörü (boyut: [batch_size, num_tokens, d_out])
+        """
+        # Batch boyutunu da içeren giriş şekli
+        b, num_tokens, d_in = x.shape
+
+        # 1 Query, Key, Value matrislerini oluştur
+        keys    = self.W_key(x)
+        queries = self.W_query(x)
+        values  = self.W_value(x)
+
+        # 2 Attention skorlarını hesapla (QKᵀ)
+        attn_scores = queries @ keys.transpose(1, 2)
+
+        # 3 Gelecekteki token’ları maskele
+        # mask.bool()[:num_tokens, :num_tokens] → yalnızca mevcut sequence kadarını alır
+        attn_scores.masked_fill_(
+            self.mask.bool()[:num_tokens, :num_tokens],
+            -torch.inf
+        )
+
+        # 4 Ölçekle, softmax uygula ve dropout ekle
+        attn_weights = torch.softmax(
+            attn_scores / (keys.shape[-1] ** 0.5), dim=-1
+        )
+        attn_weights = self.dropout(attn_weights)
+
+        # 5 Ağırlıklarla Value vektörlerini topla → context vektörleri
+        context_vec = attn_weights @ values
+
+        return context_vec
