@@ -16,12 +16,6 @@ Bu çalışma **öğrenme, öğretme ve araştırma amaçlıdır**; ticari bir k
 Her dosyada, orijinal kod yapısına sadık kalınarak **Türkçe açıklamalar, yorum satırları ve açıklayıcı notlar** eklenmiştir.  
 Amaç, büyük dil modelleri (LLM) konusunu Türkçe olarak daha anlaşılır hale getirmektir.
 
-### 📚 İçerik Başlıkları
-- Lesson 01: LLM Temelleri (Foundations of LLMs)  
-- Lesson 02: Tokenization ve Embedding  
-- Lesson 03: Attention Mekanizması  
-- Lesson 04: Fine-Tuning, Prompting, ve Inference  
-- ... (devam edecek)
 
 ### ⚠️ Telif ve Lisans Notu
 Bu proje, orijinal video serisinin sahibi tarafından paylaşılan içeriklere dayanmaktadır.  
@@ -42,12 +36,6 @@ no commercial redistribution or monetization is intended.
 Each file includes **Turkish commentary, code explanations, and docstrings**  
 to make Large Language Model (LLM) concepts more accessible to Turkish learners.
 
-### 📘 Contents
-- Lesson 01: LLM Fundamentals  
-- Lesson 02: Tokenization and Embedding  
-- Lesson 03: Attention Mechanism  
-- Lesson 04: Fine-Tuning, Prompting, and Inference  
-- ... (to be continued)
 
 ### ⚖️ License and Credits
 All rights for the original materials belong to their respective creator(s).  
