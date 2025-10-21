@@ -60,8 +60,7 @@ Please cite or reference the original YouTube playlist when reproducing or shari
 **Reyhan Hoşavcı**  
 FSMVÜ — Computer Engineering PhD Student  
 AI Researcher | NLP & Vision-Language Models  
-📧 Contact: _(optional, e.g., your GitHub email)_  
-🔗 [GitHub Profile](https://github.com/YourGitHubUsername)
+🔗 [GitHub Profile](https://github.com/reyhanhosavci)
 
 ---
 
