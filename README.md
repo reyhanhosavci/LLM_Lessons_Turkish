@@ -29,7 +29,8 @@ Amaç, büyük dil modelleri (LLM) konusunu Türkçe olarak daha anlaşılır ha
 | **Lesson 15**     | `L_15_self_attention.py`       |  Self-Attention (Kendine Dikkat) Yapısı              |
 | **Lesson 16**     | `L_16_causal_attention.py`     |  Causal (Maskeli) Attention                          |
 | **Lesson 17**     | `L_17_multi_head_attention.py` |  Multi-Head Attention (Çok Başlı Dikkat)             |
-| **Lesson 19**     | `L_19_llm_architecture.py`     |  LLM (Large Language Model) Mimarisi Genel Yapısı   |
+| **Lesson 19**     | `L_19_llm_architecture.py`     |  LLM (Large Language Model) Mimarisi Genel Yapısı    |
+| **Lesson 20**     | `L_20_layer_normalization.py`  |  Layer Normalization (Katman Normalizasyonu)         |
 | **Ek Modül**      | `self_attention.py`            |  Self-Attention Modül Tanımı                         |
 | **Ek Modül**      | `multi_head_attention.py`      |  Multi-Head Attention Modül Tanımı                   |
 | **Ek Modül**      | `data_loader.py`               |  Dataset ve DataLoader Yardımcı Fonksiyonları        |
@@ -69,7 +70,8 @@ to make Large Language Model (LLM) concepts more accessible to Turkish learners.
 | **Lesson 15**        | `L_15_self_attention.py`       |  Self-Attention (Understanding Context Within a Sequence)               |
 | **Lesson 16**        | `L_16_causal_attention.py`     |  Causal (Masked) Attention — Preventing Information Leakage             |
 | **Lesson 17**        | `L_17_multi_head_attention.py` |  Multi-Head Attention Explained                                         |
-| **Lesson 19**        | `L_19_llm_architecture.py`     |  LLM Architecture Overview — Assembling Model Components               |
+| **Lesson 19**        | `L_19_llm_architecture.py`     |  LLM Architecture Overview — Assembling Model Components                |
+| **Lesson 20**        | `L_20_layer.normalization.py`  |  Layer Normalization                                                    |
 | **Module**           | `self_attention.py`            |  Self-Attention Class Implementation                                    |
 | **Module**           | `multi_head_attention.py`      |  Multi-Head Attention Class Implementation                              |
 | **Module**           | `data_loader.py`               |  Data Preparation Utilities (Dataset & DataLoader)                      |
