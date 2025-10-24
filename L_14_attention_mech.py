@@ -1,6 +1,3 @@
-# --------------------------------------------------------------
-# LLM Lessons - Lesson 14: Attention Mechanism (Türkçe Açıklamalı)
-# --------------------------------------------------------------
 import os
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"  # OpenMP hatası önleme
 
@@ -82,4 +79,5 @@ print("Attention ağırlıkları:\n", attn_weights)
 # --------------------------------------------------------------
 all_context_vecs = attn_weights @ inputs
 print("Context vektörleri (6x3):\n", all_context_vecs)
+
 
