@@ -1,6 +1,3 @@
-# --------------------------------------------------------------
-# LLM Lessons - Lesson 21: Multi-Head Self-Attention (Transformer Style)
-# --------------------------------------------------------------
 import torch
 import torch.nn as nn
 
@@ -87,3 +84,4 @@ class MultiHeadAttention(nn.Module):
         context_vec = self.out_proj(context_vec)
 
         return context_vec
+
