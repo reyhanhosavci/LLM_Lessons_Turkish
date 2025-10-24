@@ -1,7 +1,3 @@
-# --------------------------------------------------------------
-# LLM Lessons - Lesson 16: Causal (Masked) Self-Attention Uygulaması
-# --------------------------------------------------------------
-
 import torch 
 from self_attention import SelfAttention_v2, CausalAttention
 
@@ -179,3 +175,4 @@ print(context_vecs)
 #          [-0.5675, -0.0843],
 #          [-0.5526, -0.0981],
 #          [-0.5299, -0.1081]]], grad_fn=<UnsafeViewBackward0>)
+
