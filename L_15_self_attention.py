@@ -1,7 +1,3 @@
-# --------------------------------------------------------------
-# LLM Lessons - Lesson 15: Scaled Dot-Product Attention (Türkçe Açıklamalı)
-# --------------------------------------------------------------
-
 import torch
 
 # --------------------------------------------------------------
@@ -138,3 +134,4 @@ print("SelfAttention_v2 ile oluşturulan context vektörleri:\n", context_vec_v2
 #         [-0.0760,  0.0685],
 #         [-0.0763,  0.0679],
 #         [-0.0754,  0.0693]], grad_fn=<MmBackward0>)
+
